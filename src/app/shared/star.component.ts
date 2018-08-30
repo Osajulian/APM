@@ -7,7 +7,7 @@ import { Component, OnChanges } from '@angular/core';
     styleUrls: ['./star.component.css']
 
 })
-export class StarRatingComponent implements OnChanges {
+export class StarComponent implements OnChanges {
     rating = 4;
     starWidth: Number;
 
