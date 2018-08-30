@@ -1,4 +1,4 @@
-import { Component, OnChanges } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 
 
 @Component({
@@ -8,7 +8,7 @@ import { Component, OnChanges } from '@angular/core';
 
 })
 export class StarComponent implements OnChanges {
-    rating = 4;
+    @Input()rating;
     starWidth: Number;
 
     ngOnChanges(): void {
