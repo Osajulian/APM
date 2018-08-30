@@ -11,7 +11,17 @@ export class ProductListComponent implements OnInit {
     imageWidth: Number = 50;
     imageMargin: Number = 2;
     showImage: Boolean = false;
-    listFilter: String = 'cart';
+
+    _listFilter: string;
+    get listFilter(): string {
+      return this._listFilter;
+    }
+    set listFilter(value: string) {
+      this._listFilter = value;
+      this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
+    }
+
+    filteredProducts: IProduct[];
     products: IProduct[] =
     [
         {
@@ -65,6 +75,17 @@ export class ProductListComponent implements OnInit {
             'imageUrl': 'https://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png'
           }
         ];
+
+        constructor() {
+          this.filteredProducts = this.products;
+          this.listFilter = 'cart';
+        }
+
+        performFilter(filterBy: string): IProduct[] {
+          filterBy = filterBy.toLowerCase();
+          return this.products.filter((product: IProduct) =>
+        product.productName.toLowerCase().indexOf(filterBy) !== -1);
+        }
 
         toggleImage(): void {
 
