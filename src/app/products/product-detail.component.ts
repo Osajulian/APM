@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from './product';
 
 @Component({
@@ -11,7 +11,9 @@ export class ProductDetailComponent implements OnInit {
   product: IProduct;
 
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -29,6 +31,10 @@ export class ProductDetailComponent implements OnInit {
 'starRating': 3.2,
 'imageUrl': 'https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png'
     };
+  }
+
+  onBack(): void {
+    this.router.navigate(['/products']);
   }
 
 }
